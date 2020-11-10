@@ -14,20 +14,26 @@ class Post(scrapy.Spider):
 
     def getTitle(self, item, response):
         regx = '//*[@id="juejin"]/div[2]/main/div/div[1]/article/h1/text()'
-        data = response.xpath(regx).extract()
-        print('22')
-        print(data)
         return item
 
     def getContent(self, item, response):
         regx = '//*[@class="markdown-body"]//p/text()'
         data = response.xpath(regx).extract()
-        print(data)
+        # print(data)
         return item
 
     def getImage(self, item, response):
-        
+
         return item
+
+    def getMarkDownBody(self,item,response):
+       regx = '//*[@class="markdown-body"]'      
+       data = response.xpath(regx)
+       xdata = data.xpath('string(.)').extract[0]
+       print(data)
+       with open('index.html','wb') as f:
+         f.write(xdata.encode(encoding='UTF-8')) 
+       pass
 
     def parse(self, response):
         if 35000 > len(response.body):
@@ -39,4 +45,5 @@ class Post(scrapy.Spider):
             item = PostItem()
             self.getTitle(item, response)
             self.getContent(item, response)
+            self.getMarkDownBody(item,response)
             pass

@@ -1,0 +1,184 @@
+<div class="markdown-body"><style>.markdown-body{word-break:break-word;line-height:1.75;font-weight:400;font-size:15px;overflow-x:hidden;color:#333}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{line-height:1.5;margin-top:35px;margin-bottom:10px;padding-bottom:5px}.markdown-body h1{font-size:30px;margin-bottom:5px}.markdown-body h2{padding-bottom:12px;font-size:24px;border-bottom:1px solid #ececec}.markdown-body h3{font-size:18px;padding-bottom:0}.markdown-body h4{font-size:16px}.markdown-body h5{font-size:15px}.markdown-body h6{margin-top:5px}.markdown-body p{line-height:inherit;margin-top:22px;margin-bottom:22px}.markdown-body img{max-width:100%}.markdown-body hr{border:none;border-top:1px solid #ddd;margin-top:32px;margin-bottom:32px}.markdown-body code{word-break:break-word;border-radius:2px;overflow-x:auto;background-color:#fff5f5;color:#ff502c;font-size:.87em;padding:.065em .4em}.markdown-body code,.markdown-body pre{font-family:Menlo,Monaco,Consolas,Courier New,monospace}.markdown-body pre{overflow:auto;position:relative;line-height:1.75}.markdown-body pre>code{font-size:12px;padding:15px 12px;margin:0;word-break:normal;display:block;overflow-x:auto;color:#333;background:#f8f8f8}.markdown-body a{text-decoration:none;color:#0269c8;border-bottom:1px solid #d1e9ff}.markdown-body a:active,.markdown-body a:hover{color:#275b8c}.markdown-body table{display:inline-block!important;font-size:12px;width:auto;max-width:100%;overflow:auto;border:1px solid #f6f6f6}.markdown-body thead{background:#f6f6f6;color:#000;text-align:left}.markdown-body tr:nth-child(2n){background-color:#fcfcfc}.markdown-body td,.markdown-body th{padding:12px 7px;line-height:24px}.markdown-body td{min-width:120px}.markdown-body blockquote{color:#666;padding:1px 23px;margin:22px 0;border-left:4px solid #cbcbcb;background-color:#f8f8f8}.markdown-body blockquote:after{display:block;content:""}.markdown-body blockquote>p{margin:10px 0}.markdown-body ol,.markdown-body ul{padding-left:28px}.markdown-body ol li,.markdown-body ul li{margin-bottom:0;list-style:inherit}.markdown-body ol li .task-list-item,.markdown-body ul li .task-list-item{list-style:none}.markdown-body ol li .task-list-item ol,.markdown-body ol li .task-list-item ul,.markdown-body ul li .task-list-item ol,.markdown-body ul li .task-list-item ul{margin-top:0}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-top:3px}.markdown-body ol li{padding-left:6px}@media (max-width:720px){.markdown-body h1{font-size:24px}.markdown-body h2{font-size:20px}.markdown-body h3{font-size:18px}}</style><h4 data-id="heading-0">系列文章直通车</h4>
+<ol>
+<li><a href="https://juejin.im/post/6891984620427542535" target="_blank">为什么学习函数式编程?</a></li>
+<li><a href="https://juejin.im/post/6893110732423397383" target="_blank">十分钟掌握纯函数和柯里化</a></li>
+<li><a href="https://juejin.im/post/6893503896249958413" target="_blank">五分钟了解函数组合</a></li>
+</ol>
+<h4 data-id="heading-1">纯函数</h4>
+<p>函数式编程中的函数，指的都是纯函数，纯函数的概念简单来说就是对于一个函数来说，使用相同的输入始终会得到相同的输出，而且没有可观察到的副作用。关于副作用我们后面再解释。这里我们只讨论相同的输入始终会得到相同的输出。</p>
+<p>纯函数其实就是数学中函数的概念，他是用来描述输入和输出的映射关系。y=f(x);</p>
+<p>我们这里通过数组的两个方法slice和splice来演示一下纯的函数和不纯的函数。slice的作用是返回数组中的指定部分，不会改变原数组，splice是对数组进行操作，会改变原数组。</p>
+<p>首先我们在这里调用三次slice，注意纯函数的定义，相同的输出始终会得到相同的输出。</p>
+<pre><code class="copyable">let array = [1, 2, 3, 4, 5, 6];
+
+console.log(array.slice(0, 2));
+console.log(array.slice(0, 2));
+console.log(array.slice(0, 2));
+<span class="copy-code-btn">复制代码</span></code></pre>
+<p>测试发现三次打印的结果都是一样的，所以slice就是一个纯函数。接下来我们再来演示一下splice。</p>
+<pre><code class="copyable">let array = [1, 2, 3, 4, 5, 6];
+
+console.log(array.splice(0, 2));
+console.log(array.splice(0, 2));
+console.log(array.splice(0, 2));
+<span class="copy-code-btn">复制代码</span></code></pre>
+<p>我们发现每一次打印的结果都是不同的，因为每一次调用的时候都会修改原数组，每一次都会移除掉数组中的两个元素。这里相同的输入得到的输出是不一样的所以splice这个方法是不纯的函数。</p>
+<p>下面我们自己来写一个纯函数，比如我们写一个计算两个数的和的函数。</p>
+<p>对于纯函数来说，要有输入，也要有输出，我们这里多次调用，得到的结果都是相同的。</p>
+<pre><code class="copyable">function getSum (n1, n2) {
+    return n1 + n2;
+}
+
+console.log(getSum(1, 2));
+console.log(getSum(1, 2));
+console.log(getSum(1, 2));
+<span class="copy-code-btn">复制代码</span></code></pre>
+<p>在函数式编程中，不会保留中间计算的结果，所以我们就认为他的变量是不可变的，也就是无状态的。</p>
+<p>在基于函数式编程的过程中我们经常会需要一些细粒度的纯函数，我们可以把一个函数的执行结果传递给另一个函数去处理，这就是函数组合。</p>
+<h4 data-id="heading-2">纯函数的优点</h4>
+<p>纯函数的第一个好处是可缓存，因为纯函数对相同的输入始终会有相同的输出，所以可以把纯函数的结果进行缓存。</p>
+<p>为什么要缓存函数呢，比如说我们有个函数，执行起来特别耗时，但是这个函数需要多次调用，那每次调用这个函数的时候都需要去等一段时间，才能获取到这个结果，所以他对性能来说是有影响的，使用缓存可以很好的解决这个问题，提高程序的性能。</p>
+<p>lodash存在一个带记忆功能的函数memoize，我们定义一个球圆面积的纯函数getArea。我们想要把这个计算结果缓存下来，就要用到memoize。这个方法会返回一个带有记忆功能的函数。</p>
+<p>为了演示这个函数被缓存，我们可以在getArea中打印一句话，然后调用两次getAreaWithMemory。</p>
+<pre><code class="hljs language-js copyable" lang="js"><span class="hljs-keyword">const</span> _ <span class="hljs-keyword">from</span> <span class="hljs-string">'lodash'</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getArea</span> (<span class="hljs-params">r</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`getArea 执行了`</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.PI * r * r;
+}
+
+<span class="hljs-keyword">const</span> getAreaWithMemory = _.memoize(getArea);
+
+<span class="hljs-built_in">console</span>.log(getAreaWithMemory(<span class="hljs-number">3</span>)));
+<span class="hljs-built_in">console</span>.log(getAreaWithMemory(<span class="hljs-number">3</span>))); 
+
+<span class="copy-code-btn">复制代码</span></code></pre>
+<p>可以发现，当我们第一次调用getAreaWithMemory的时候，打印了getArea中的console, 第二次调用getAreaWithMemory的时候并没有打印getArea中的console。但是两次调用getAreaWithMemory都返回了相同的结果。</p>
+<p>这就说明函数getArea被缓存了，这里我们来模拟一下memoize内部是如何实现纯函数的缓存的。</p>
+<p>根据memoize我们知道，这个函数执行的时候要传入一个函数f作为参数，这个f就是真实的函数，也就是上面例子中的getArea，并且返回值也是一个函数。函数的内部要存在一个对象缓存函数f执行的结果，我们可以用f函数传入的参数作为对象的键，因为用户实际调用的是返回的这个参数，所以形参应该在返回的函数中，f的执行结果作为对象的值。</p>
+<p>在返回的函数中我们需要存储传入的参数作为键，然后判断cache中是否存在该键对应的值，如果存在，直接返回该值，如果不存在，则调用f函数，并且将执行结果存入cache再返回执行结果。</p>
+<p>这里我们通过apply来调用函数f，因为我们并不知道有多少个参数，所以我们使用arguments参数集合，apply第二个参数可以接收一个参数集合。第一个参数是函数调用的this，这里不是主要的，我们可以写成f它自身。</p>
+<pre><code class="hljs language-js copyable" lang="js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">memoize</span> (<span class="hljs-params">f</span>) </span>{
+    <span class="hljs-keyword">let</span> cache = {};
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">let</span> key = <span class="hljs-built_in">JSON</span>.stringify(<span class="hljs-built_in">arguments</span>);
+        cache[key] = cache[key] || f.apply(f, <span class="hljs-built_in">arguments</span>);
+        <span class="hljs-keyword">return</span> cache[key];
+    }
+}
+<span class="copy-code-btn">复制代码</span></code></pre>
+<p>这里其实还有一点问题的，假设缓存的值是false，0，null, undefined或者空字符串等仍然会执行原函数，不过这些暂时不在我们讨论之列，这里就不再赘述了。</p>
+<p>到这里关于纯函数的第一个好处，可缓存，我们这里就演示完了，将来我们在写程序的时候就可以通过这种方式来提高程序的性能。</p>
+<p>纯函数的第二个好处就是可测试，因为纯函数始终有输入和输出，而单元测试就是在断言函数的结果，所以我们所有的纯函数都是可测试的函数。</p>
+<p>另外纯函数还方便并行处理，因为在多线程环境下并行操作共享的内存数据很可能会出现意外情况，假设多个线程同时修改一个全局变量，并且每个线程修改后的值都不同，那这个变量的值最终是没办法确定的。纯函数就不会有这样的问题，因为他只依赖参数，他不能访问共享的内存数据，也就是自己作用域外的数据，所以在并行环境下可以任意运行纯函数。</p>
+<p>在以前这和js基本上是没关系的，因为js是单线程的，但是在ES6之后，js新增了Web Worker, 可以开启多线程，但是大多数我们使用js还是单线程的。</p>
+<h4 data-id="heading-3">副作用</h4>
+<p>纯函数的另一个特性是没有任何可观察的副作用，我们通过一段代码来演示什么是副作用</p>
+<pre><code class="hljs language-js copyable" lang="js"><span class="hljs-keyword">let</span> mini = <span class="hljs-number">18</span>;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">checkAge</span> (<span class="hljs-params">age</span>) </span>{
+    <span class="hljs-keyword">return</span> age &gt;= mini;
+}
+
+checkAge(<span class="hljs-number">20</span>); <span class="hljs-comment">// true</span>
+mini = <span class="hljs-number">28</span>;
+checkAge(<span class="hljs-number">20</span>); <span class="hljs-comment">// false</span>
+<span class="copy-code-btn">复制代码</span></code></pre>
+<p>上面这个函数就是不纯的，因为我们知道，对于一个纯函数来说，相同的输入永远得到想用的输出，而checkAge这个函数，依赖了外部变量mini，这个变量是可能发生变化的。所以并不能保证相同的输入始终返回相同的输出，所以他是不纯的，也就是存在副作用。</p>
+<p>副作用让一个函数变得不纯，纯函数的根据是相同的输入返回相同的输出，如果函数依赖于外部的状态就无法保证输出相同，就会带来副作用，也就是我们这个mini变量带来了副作用，让函数变得不纯。</p>
+<p>除了全局变量，副作用的来源还有配置文件，我们有可能会从配置文件中获取信息。还有数据库和获取用户输入等等，这些都会带来副作用。</p>
+<p>总结就是所有的外部交互都会产生副作用，副作用也会使得方法通用性下降不适合以后的扩展和重用。同时副作用也会给程序中带来一些安全隐患，比如说用户的输入可以带来攻击。</p>
+<p>虽然副作用存在这么多问题，但是副作用是不可能完全禁止的，因为我们不可能将用户名密码等一些信息记录到代码中，这些信息还是需要放在数据库中的，我们应该尽可能的控制副作用在可控的范围内发生。</p>
+<h4 data-id="heading-4">柯里化</h4>
+<p>这里我们来谈论下函数式编程中另一个重要的概念，柯里化</p>
+<p>首先，我们先通过下面的方式将上节代码中不纯的函数变成纯函数。就是将mini拿到函数内部去。</p>
+<pre><code class="hljs language-js copyable" lang="js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">checkAge</span> (<span class="hljs-params">age</span>) </span>{
+    <span class="hljs-keyword">let</span> mini = <span class="hljs-number">18</span>;
+    <span class="hljs-keyword">return</span> age &gt;= mini;
+}
+<span class="copy-code-btn">复制代码</span></code></pre>
+<p>但是当我们把这个mini拿到函数内部的时候还有一个问题，因为这个变量的值等于一个具体的数字，就出现了硬编码，我们都知道，在写程序的时候要尽量避免硬编码。我们要解决硬编码也比较简单，只是需要把18提取到参数位置就可以了。</p>
+<pre><code class="hljs language-js copyable" lang="js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">checkAge</span> (<span class="hljs-params">min, age</span>) </span>{
+    <span class="hljs-keyword">return</span> age &gt;= min;
+}
+
+checkAge(<span class="hljs-number">18</span>, <span class="hljs-number">20</span>);
+checkAge(<span class="hljs-number">18</span>, <span class="hljs-number">21</span>);
+checkAge(<span class="hljs-number">18</span>, <span class="hljs-number">22</span>);
+<span class="copy-code-btn">复制代码</span></code></pre>
+<p>这里我们就改造完了，我们根据输入始终会得到相同的输出，因为他不在依赖于外部的变量，并且它里面也没有硬编码。</p>
+<p>可以发现，当我们经常使用18这个基准值的时候，这个18就会经常重复，我们想要避免这个18重复，我们可以使用闭包来解决这个问题。比如我们重新定义chekAge函数，他接收一个基准值min，返回一个函数。</p>
+<p>返回的函数中接收一个age参数, 在函数体中我们返回age大于等于min，定义完之后，我们可以通过checkAge返回一个新的函数checkAge18，checkAge调用的时候就可以传入18。这个18就记录到了函数中。</p>
+<pre><code class="hljs language-js copyable" lang="js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">checkAge</span> (<span class="hljs-params">min</span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">age</span>) </span>{
+        <span class="hljs-keyword">return</span> age &gt;= min;
+    }
+}
+<span class="hljs-keyword">let</span> checkAge18 = checkAge(<span class="hljs-number">18</span>);
+
+checkAge18(<span class="hljs-number">20</span>);
+checkAge18(<span class="hljs-number">21</span>);
+checkAge18(<span class="hljs-number">22</span>);
+<span class="copy-code-btn">复制代码</span></code></pre>
+<p>这里可以发现我们在调用的时候不会让基准值重复，因为我们在第一个函数中已经确定下来了。</p>
+<p>以上函数调用的方式就是柯里化，那我们这里简单说明一下什么是柯里化。</p>
+<p>当我们的函数有多个参数的时候我们可以对这个函数进行改造，我们可以调用一个函数，只传递部分参数，并且让这个函数返回一个新的函数，这个新的函数去接收剩余的参数，并且返回相应的结果，这就是函数的柯里化。</p>
+<p>上面的代码不够通用，我们这里介绍一下lodash中提供的通用柯里化方法，lodash中柯里化的方法叫做curry，这个方法的参数是一个函数，返回值是柯里化之后的函数。curry本身是一个纯函数，如果我们传入的参数是个纯函数的话，返回的函数也会是一个纯函数。</p>
+<p>我们这里演示一下lodash中curry方法的使用。</p>
+<p>我们这里定义一个求三个数和的函数, 柯里化可以将一个多元(参数个数)函数转换为一元函数。我们使用curried来接收柯里化之后的getSum方法。这个新得到的curried被调用时，当他判断传入的参数个数已经是需要的个数了，就会执行。我们可以一次性全部传入，也可以从前到后部分传入。当传入部分参数时，他会返回一个新的函数。</p>
+<pre><code class="hljs language-js copyable" lang="js"><span class="hljs-keyword">const</span> _ = <span class="hljs-built_in">require</span>(<span class="hljs-string">'lodash'</span>);
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getSum</span> (<span class="hljs-params">a, b, c</span>) </span>{
+    <span class="hljs-keyword">return</span> a + b + c;
+}
+
+<span class="hljs-keyword">const</span> curried = _curry(getSum);
+
+<span class="hljs-comment">// curried(1, 2, 3);</span>
+<span class="hljs-comment">// curried(1)(2, 3);</span>
+curried(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)(<span class="hljs-number">3</span>);
+<span class="copy-code-btn">复制代码</span></code></pre>
+<p>所以我们这里发现，我们通过柯里化过后的函数使用起来非常方便，他可以传递一个参数，可以传入多个参数。</p>
+<p>下面我们来模拟一下lodash中柯里化的实现，在模拟之前我们先来回顾一下curry方法是如何调用的，当我们调用这个方法的时候，我们需要给他传入一个参数，这个参数是一个纯函数，当调用完成之后他会返回一个函数，那这个函数是柯里化之后的函数。</p>
+<p>返回的柯里化函数在执行的时候，可以传递全部参数，也可以传递部分参数，当传递全部参数的时候，这个函数就要立即执行，当传递是部分参数的时候，会返回一个新的函数，然后等待接收剩余的参数。</p>
+<p>这里我们知道，传递的参数是不固定的，所以我们在函数的内部就要判断一下传入的参数和形参的个数是否相同。我们可以通过ES6的reset剩余参数(..args)来实现。</p>
+<p>然后我们需要把形参个数和实参个数进行对比，判断是否相同。实参就是args，形参可以通过函数名的长度获取，也就是func.length。</p>
+<pre><code class="hljs language-js copyable" lang="js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">curry</span> (<span class="hljs-params">func</span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">curriedFn</span>(<span class="hljs-params">...args</span>) </span>{
+        <span class="hljs-keyword">if</span> (args.length &gt;= func.length) {
+           <span class="hljs-keyword">return</span> func(...args);
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+                
+            }
+        }
+    }
+}
+<span class="copy-code-btn">复制代码</span></code></pre>
+<p>当传入部分参数的时候，我们需要将当前传入的参数和之前传入的参数合并到一起，然后与原函数的参数进行对比。</p>
+<p>新传入的参数我们用...newArgs获取，以前传入的参数在...args中。这里我们可以将args和newArgs进行合并，然后手动调用curriedFn，让curriedFn帮我们判断参数是否相等的逻辑。</p>
+<pre><code class="hljs language-js copyable" lang="js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">curry</span> (<span class="hljs-params">func</span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">curriedFn</span>(<span class="hljs-params">...args</span>) </span>{
+        <span class="hljs-keyword">if</span> (args.length &gt;= func.length) {
+           <span class="hljs-keyword">return</span> func(...args);
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">...newArgs</span>) </span>{
+                <span class="hljs-keyword">return</span> curriedFn(...args.concat(newArgs));
+            }
+        }
+    }
+}
+<span class="copy-code-btn">复制代码</span></code></pre>
+<p>这里我们就写完了，最后我们来总结一下函数的柯里化。</p>
+<p>函数的柯里化可以让我们给一个函数传递较少的参数，得到一个已经记住了某些固定参数的新函数。也就是柯里化可以实现函数的参数分步传递，如果传递的参数不满足函数的参数要求，就会返回一个新的函数，可以在新的函数中继续传递后面的参数。前面传递的参数已经被记录在新函数里面了。</p>
+<p>柯里化的内部使用了闭包对函数的参数进行了缓存，柯里化可以让函数变得更灵活，因为可以生成一些粒度更小的函数。我们这么做的目的是为了后续学习组合的时候使用。</p>
+<p>使用柯里化可以把多元的函数转化成一元的函数，可以把这些一元函数组合成功能更强大的函数。</p>
+<hr>
+<p>欢迎关注，更多系列文章</p></div>
+    <script>
+        const Images = document.querySelectorAll('img')
+        for(let i=0; i<=Images.length; i++){
+            let img = Images[i]
+            if(!img) break
+            img.src = img.getAttribute('data-src')
+        }
+    </script>

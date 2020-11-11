@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import scrapy
 import json
+
+
 # from bs4 import BeautifulSoup
 
 
@@ -16,15 +18,15 @@ class HomeSpider(scrapy.Spider):
         form_data = {"id_type": '2', "client_type": '2608',
                      "sort_type": '300', "cursor": "0", "limit": '20'}
         yield scrapy.FormRequest(url=self.start_urls[0], formdata=form_data)
-  
+
     def getTitle(self):
-      pass
+        pass
 
     def parse(self, response):
         filename = response.url.split("/")[-2]
         body = response.body
         data = json.loads(body)['data']
-        with open('list2.json', 'w') as f:
+        with open('list2.json', 'wb') as f:
             f.write(json.dumps(data))
         for i in range(len(data)):
             item_info = data[i].get('item_info')

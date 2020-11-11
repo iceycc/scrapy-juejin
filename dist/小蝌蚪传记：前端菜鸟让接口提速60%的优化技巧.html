@@ -1,0 +1,246 @@
+<div class="markdown-body"><style>.markdown-body{word-break:break-word;line-height:1.75;font-weight:400;font-size:15px;overflow-x:hidden;color:#333}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{line-height:1.5;margin-top:35px;margin-bottom:10px;padding-bottom:5px}.markdown-body h1{font-size:30px;margin-bottom:5px}.markdown-body h2{padding-bottom:12px;font-size:24px;border-bottom:1px solid #ececec}.markdown-body h3{font-size:18px;padding-bottom:0}.markdown-body h4{font-size:16px}.markdown-body h5{font-size:15px}.markdown-body h6{margin-top:5px}.markdown-body p{line-height:inherit;margin-top:22px;margin-bottom:22px}.markdown-body img{max-width:100%}.markdown-body hr{border:none;border-top:1px solid #ddd;margin-top:32px;margin-bottom:32px}.markdown-body code{word-break:break-word;border-radius:2px;overflow-x:auto;background-color:#fff5f5;color:#ff502c;font-size:.87em;padding:.065em .4em}.markdown-body code,.markdown-body pre{font-family:Menlo,Monaco,Consolas,Courier New,monospace}.markdown-body pre{overflow:auto;position:relative;line-height:1.75}.markdown-body pre>code{font-size:12px;padding:15px 12px;margin:0;word-break:normal;display:block;overflow-x:auto;color:#333;background:#f8f8f8}.markdown-body a{text-decoration:none;color:#0269c8;border-bottom:1px solid #d1e9ff}.markdown-body a:active,.markdown-body a:hover{color:#275b8c}.markdown-body table{display:inline-block!important;font-size:12px;width:auto;max-width:100%;overflow:auto;border:1px solid #f6f6f6}.markdown-body thead{background:#f6f6f6;color:#000;text-align:left}.markdown-body tr:nth-child(2n){background-color:#fcfcfc}.markdown-body td,.markdown-body th{padding:12px 7px;line-height:24px}.markdown-body td{min-width:120px}.markdown-body blockquote{color:#666;padding:1px 23px;margin:22px 0;border-left:4px solid #cbcbcb;background-color:#f8f8f8}.markdown-body blockquote:after{display:block;content:""}.markdown-body blockquote>p{margin:10px 0}.markdown-body ol,.markdown-body ul{padding-left:28px}.markdown-body ol li,.markdown-body ul li{margin-bottom:0;list-style:inherit}.markdown-body ol li .task-list-item,.markdown-body ul li .task-list-item{list-style:none}.markdown-body ol li .task-list-item ol,.markdown-body ol li .task-list-item ul,.markdown-body ul li .task-list-item ol,.markdown-body ul li .task-list-item ul{margin-top:0}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-top:3px}.markdown-body ol li{padding-left:6px}@media (max-width:720px){.markdown-body h1{font-size:24px}.markdown-body h2{font-size:20px}.markdown-body h3{font-size:18px}}</style><p><img alt="" class="lazyload" data-src="//p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/552f3d64a2a64cadb794aa31ad91bdef~tplv-k3u1fbpfcp-zoom-1.image" data-width="800" data-height="600"></p>
+<blockquote>
+<p><a href="https://github.com/tnfe/FFCreator" target="_blank" rel="nofollow noopener noreferrer">FFCreator</a>是我们团队做的一个轻量、灵活的短视频加工库。您只需要添加几张图片或文字，就可以快速生成一个类似抖音的酷炫短视频。github地址：<a href="https://github.com/tnfe/FFCreator" target="_blank" rel="nofollow noopener noreferrer">github.com/tnfe/FFCrea…</a> 欢迎小伙伴star。</p>
+</blockquote>
+<h2 data-id="heading-0">背景</h2>
+<p>好久没写文章了，沉寂了大半年</p>
+<p>持续性萎靡不振，间歇性癫痫发作</p>
+<p>天天来大姨爹，在迷茫、焦虑中度过每一天</p>
+<p>不得不承认，其实自己就是个废物</p>
+<p>作为一名低级前端工程师</p>
+<p>最近处理了一个十几年的祖传老接口</p>
+<p>它继承了一切至尊级复杂度逻辑</p>
+<p>传说中调用一次就能让cpu负载飙升90%的日天服务</p>
+<p>专治各种不服与老年痴呆</p>
+<p>我们欣赏一下这个接口的耗时</p>
+<p><img alt="" class="lazyload" data-src="//p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/dea7919a163b48e2bdac5ce70fc18bdc~tplv-k3u1fbpfcp-zoom-1.image" data-width="800" data-height="600"></p>
+<p>平均调用时间在3s以上</p>
+<p>导致页面出现严重的转菊花</p>
+<p>经过各种深度剖析与专业人士答疑</p>
+<p>最后得出结论是：放弃医疗</p>
+<p>鲁迅在《狂人日记》里曾说过：“<code>能打败我的，只有女人和酒精，而不是bug</code>”</p>
+<p>每当身处黑暗之时</p>
+<p>这句话总能让我看到光</p>
+<p>所以这次要硬起来</p>
+<p>我决定做一个node代理层</p>
+<p>用下面三个方法进行优化：</p>
+<ul>
+<li>
+<p><code>按需加载 -&gt; graphQL</code></p>
+</li>
+<li>
+<p><code>数据缓存 -&gt; redis</code></p>
+</li>
+<li>
+<p><code>轮询更新 -&gt; schedule</code></p>
+</li>
+</ul>
+<p>代码地址：<a href="https://github.com/airuikun/blog/tree/master/src/graphql%2Bredis" target="_blank" rel="nofollow noopener noreferrer">github</a></p>
+<h2 data-id="heading-1">按需加载 -&gt; graphQL</h2>
+<p>天秀老接口存在一个问题，我们每次请求1000条数据，返回的数组中，每一条数据都有上百个字段，其实我们前端只用到其中的10个字段而已。</p>
+<p>如何从一百多个字段中，抽取任意n个字段，这就用到graphQL。</p>
+<p>graphQL按需加载数据只需要三步：</p>
+<ul>
+<li>定义数据池 root</li>
+<li>描述数据池中数据结构 schema</li>
+<li>自定义查询数据 query</li>
+</ul>
+<h3 data-id="heading-2">定义数据池</h3>
+<p>我们针对屌丝追求女神的场景，定义一个数据池，如下：</p>
+<pre><code class="hljs language-javascript copyable" lang="javascript"><span class="hljs-comment">// 数据池</span>
+<span class="hljs-keyword">var</span> root = {
+    <span class="hljs-attr">girls</span>: [{
+        <span class="hljs-attr">id</span>: <span class="hljs-number">1</span>,
+        <span class="hljs-attr">name</span>: <span class="hljs-string">'女神一'</span>,
+        <span class="hljs-attr">iphone</span>: <span class="hljs-number">12345678910</span>,
+        <span class="hljs-attr">weixin</span>: <span class="hljs-string">'xixixixi'</span>,
+        <span class="hljs-attr">height</span>: <span class="hljs-number">175</span>,
+        <span class="hljs-attr">school</span>: <span class="hljs-string">'剑桥大学'</span>,
+        <span class="hljs-attr">wheel</span>: [{ <span class="hljs-attr">name</span>: <span class="hljs-string">'备胎1号'</span>, <span class="hljs-attr">money</span>: <span class="hljs-string">'24万元'</span> }, { <span class="hljs-attr">name</span>: <span class="hljs-string">'备胎2号'</span>, <span class="hljs-attr">money</span>: <span class="hljs-string">'26万元'</span> }]
+    },
+    {
+        <span class="hljs-attr">id</span>: <span class="hljs-number">2</span>,
+        <span class="hljs-attr">name</span>: <span class="hljs-string">'女神二'</span>,
+        <span class="hljs-attr">iphone</span>: <span class="hljs-number">12345678910</span>,
+        <span class="hljs-attr">weixin</span>: <span class="hljs-string">'hahahahah'</span>,
+        <span class="hljs-attr">height</span>: <span class="hljs-number">168</span>,
+        <span class="hljs-attr">school</span>: <span class="hljs-string">'哈佛大学'</span>,
+        <span class="hljs-attr">wheel</span>: [{ <span class="hljs-attr">name</span>: <span class="hljs-string">'备胎3号'</span>, <span class="hljs-attr">money</span>: <span class="hljs-string">'80万元'</span> }, { <span class="hljs-attr">name</span>: <span class="hljs-string">'备胎4号'</span>, <span class="hljs-attr">money</span>: <span class="hljs-string">'200万元'</span> }]
+    }]
+}
+
+<span class="copy-code-btn">复制代码</span></code></pre>
+<p>里面有两个女神的所有信息，包括女神的名字、手机、微信、身高、学校、备胎集合等信息。</p>
+<p>接下来我们就要对这些数据结构进行描述。</p>
+<h3 data-id="heading-3">描述数据池中数据结构</h3>
+<pre><code class="hljs language-javascript copyable" lang="javascript"><span class="hljs-keyword">const</span> { buildSchema } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'graphql'</span>);
+
+<span class="hljs-comment">// 描述数据结构 schema</span>
+<span class="hljs-keyword">var</span> schema = buildSchema(<span class="hljs-string">`
+    type Wheel {
+        name: String,
+        money: String
+    }
+    type Info {
+        id: Int
+        name: String
+        iphone: Int
+        weixin: String
+        height: Int
+        school: String
+        wheel: [Wheel]
+    }
+    type Query {
+        girls: [Info]
+    }
+`</span>);
+<span class="copy-code-btn">复制代码</span></code></pre>
+<p>上面这段代码就是女神信息的schema。</p>
+<p>首先我们用<code>type Query</code>定义了一个对女神信息的查询，里面包含了很多女孩girls的信息<code>Info</code>，这些信息是一堆数组，所以是<code>[Info]</code></p>
+<p>我们在<code>type Info</code>中描述了一个女孩的所有信息的维度，包括了名字(name)、手机(iphone)、微信(weixin)、身高(height)、学校(school)、备胎集合(wheel)</p>
+<h3 data-id="heading-4">定义查询规则</h3>
+<p>得到女神的信息描述(schema)后，就可以自定义获取女神的各种信息组合了。</p>
+<p>比如我想和女神认识，只需要拿到她的名字(name)和微信号(weixin)。查询规则代码如下：</p>
+<pre><code class="hljs language-javascript copyable" lang="javascript"><span class="hljs-keyword">const</span> { graphql } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'graphql'</span>);
+
+<span class="hljs-comment">// 定义查询内容</span>
+<span class="hljs-keyword">const</span> query = <span class="hljs-string">`
+    { 
+        girls {
+            name
+            weixin
+        }
+    }
+`</span>;
+
+<span class="hljs-comment">// 查询数据</span>
+<span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> graphql(schema, query, root)
+<span class="copy-code-btn">复制代码</span></code></pre>
+<p>筛选结果如下：</p>
+<p><img alt="" class="lazyload" data-src="//p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c07349630f824b029634f2ec34693ca2~tplv-k3u1fbpfcp-zoom-1.image" data-width="800" data-height="600"></p>
+<p>又比如我想进一步和女神发展，我需要拿到她备胎信息，查询一下她备胎们(wheel)的家产(money)分别是多少，分析一下自己能不能获取优先择偶权。查询规则代码如下：</p>
+<pre><code class="hljs language-javascript copyable" lang="javascript"><span class="hljs-keyword">const</span> { graphql } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'graphql'</span>);
+
+<span class="hljs-comment">// 定义查询内容</span>
+<span class="hljs-keyword">const</span> query = <span class="hljs-string">`
+    { 
+        girls {
+            name
+            wheel {
+            	money
+            }
+        }
+    }
+`</span>;
+
+<span class="hljs-comment">// 查询数据</span>
+<span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> graphql(schema, query, root)
+<span class="copy-code-btn">复制代码</span></code></pre>
+<p>筛选结果如下：</p>
+<p><img alt="" class="lazyload" data-src="//p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5cbc693457a446578e2d4657970f1d70~tplv-k3u1fbpfcp-zoom-1.image" data-width="800" data-height="600"></p>
+<p>我们通过女神的例子，展现了如何通过graphQL按需加载数据。</p>
+<p>映射到我们业务具体场景中，天秀接口返回的每条数据都包含100个字段，我们配置schema，获取其中的10个字段，这样就避免了剩下90个不必要字段的传输。</p>
+<p>graphQL还有另一个好处就是可以灵活配置，这个接口需要10个字段，另一个接口要5个字段，第n个接口需要另外x个字段</p>
+<p>按照传统的做法我们要做出n个接口才能满足，现在只需要一个接口配置不同schema就能满足所有情况了。</p>
+<h3 data-id="heading-5">感悟</h3>
+<p>在生活中，咱们舔狗真的很缺少graphQL按需加载的思维</p>
+<p>渣男渣女，各取所需</p>
+<p>你的真情在名媛面前不值一提</p>
+<p>我们要学会投其所好</p>
+<p>上来就亮车钥匙，没有车就秀才艺</p>
+<p>今晚我有一条祖传的染色体想与您分享一下</p>
+<p>行就行，不行就换下一个</p>
+<p>直奔主题，简单粗暴</p>
+<h2 data-id="heading-6">缓存 -&gt; redis</h2>
+<p>第二个优化手段，使用redis缓存</p>
+<p>天秀老接口内部调用了另外三个老接口，而且是串行调用，极其耗时耗资源，秀到你头皮发麻</p>
+<p>我们用redis来缓存天秀接口的聚合数据，下次再调用天秀接口，直接从缓存中获取数据即可，避免高耗时的复杂调用，简化后代码如下：</p>
+<pre><code class="hljs language-javascript copyable" lang="javascript"><span class="hljs-keyword">const</span> redis = <span class="hljs-built_in">require</span>(<span class="hljs-string">"redis"</span>);
+<span class="hljs-keyword">const</span> { promisify } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"util"</span>);
+
+<span class="hljs-comment">// 链接redis服务</span>
+<span class="hljs-keyword">const</span> client = redis.createClient(<span class="hljs-number">6379</span>, <span class="hljs-string">'127.0.0.1'</span>);
+
+<span class="hljs-comment">// promise化redis方法，以便用async/await</span>
+<span class="hljs-keyword">const</span> getAsync = promisify(client.get).bind(client);
+<span class="hljs-keyword">const</span> setAsync = promisify(client.set).bind(client);
+
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">list</span>(<span class="hljs-params"></span>) </span>{
+	<span class="hljs-comment">// 先获取缓存中数据，没有缓存就去拉取天秀接口</span>
+	<span class="hljs-keyword">let</span> result = <span class="hljs-keyword">await</span> getAsync(<span class="hljs-string">"缓存"</span>);
+    <span class="hljs-keyword">if</span> (!result) {
+    	  <span class="hljs-comment">// 拉接口</span>
+    	  <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> 天秀接口();
+          result = data;
+          <span class="hljs-comment">// 设置缓存数据</span>
+          <span class="hljs-keyword">await</span> setAsync(<span class="hljs-string">"缓存"</span>, data)
+    }
+   	<span class="hljs-keyword">return</span> result;
+}
+
+list(); 
+
+<span class="copy-code-btn">复制代码</span></code></pre>
+<p>先通过<code>getAsync</code>来读取redis缓存中的数据，如果有数据，直接返回，绕过接口调用，如果没有数据，就会调用天秀接口，然后<code>setAsync</code>更新到缓存中，以便下次调用。因为redis存储的是字符串，所以在设置缓存的时候，需要加上<code>JSON.stringify(data)</code>，为了便于大家理解，我就不加了，会把具体细节代码放在<a href="https://github.com/airuikun/blog/tree/master/src/graphql%2Bredis" target="_blank" rel="nofollow noopener noreferrer">github</a>中。</p>
+<p>将数据放在redis缓存里有几个好处</p>
+<p>可以实现多接口复用、多机共享缓存</p>
+<p>这就是传说中的<code>云备胎</code></p>
+<p>追求一个女神的成功率是1%</p>
+<p>同时追求100个女神，那你获取到一个女神的概率就是100%</p>
+<p>鲁迅《狂人日记》里曾说过：“<code>舔一个是舔狗，舔一百个你就是战狼</code>”</p>
+<p>你是想当舔狗还是当战狼？</p>
+<p>来吧，缓存用起来，redis用起来</p>
+<h2 data-id="heading-7">轮询更新 -&gt; schedule</h2>
+<p>最后一个优化手段：轮询更新 -&gt; schedule</p>
+<p>女神的备胎用久了，会定时换一批备胎，让新鲜血液进来，发现新的快乐</p>
+<p>缓存也一样，需要定时更新，保持与数据源的一致性，代码如下：</p>
+<pre><code class="hljs language-javascript copyable" lang="javascript"><span class="hljs-keyword">const</span> schedule = <span class="hljs-built_in">require</span>(<span class="hljs-string">'node-schedule'</span>);
+
+<span class="hljs-comment">// 每个小时更新一次缓存</span>
+schedule.scheduleJob(<span class="hljs-string">'* * 0 * * *'</span>, <span class="hljs-keyword">async</span> () =&gt; {
+    <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> 天秀接口();
+    <span class="hljs-comment">// 设置redis缓存数据</span>
+    <span class="hljs-keyword">await</span> setAsync(<span class="hljs-string">"缓存"</span>, data)
+});
+<span class="copy-code-btn">复制代码</span></code></pre>
+<p><code>天秀接口不是一个强实时性接口，数据源一周可能才会变一次</code></p>
+<p>所以我们根据实际情况用轮询来设置更新缓存频率</p>
+<p>我们用<code>node-schedule</code>这个库来轮询更新缓存，<code>* * 0 * * *</code>这个的意思就是设置每个小时的第0分钟就开始执行缓存更新逻辑，将获取到的数据更新到缓存中，这样其他接口和机器在调用缓存的时候，就能获取到最新数据，这就是共享缓存和轮询更新的好处。</p>
+<p>早年我在当舔狗的时候，就将轮询机制发挥到淋漓尽致</p>
+<p>每天向白名单里的女神，定时轮询发消息</p>
+<p>无限循环<code>云跪舔</code>三件套：</p>
+<ul>
+<li>“啊宝贝，最近有没有想我”</li>
+<li>“啊宝贝早安安”</li>
+<li>“宝贝晚安，么么哒”</li>
+</ul>
+<p>虽然女神依然看不上我</p>
+<p>但仍然时刻准备着为女神服务</p>
+<h2 data-id="heading-8">结尾</h2>
+<p>经过以上三个方法优化后</p>
+<p>接口请求耗时从3s降到了860ms</p>
+<p><img alt="" class="lazyload" data-src="//p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fe8362e906e7401db7bc9f445ff178cf~tplv-k3u1fbpfcp-zoom-1.image" data-width="800" data-height="600"></p>
+<p>这些代码都是从业务中简化后的逻辑</p>
+<p>真实的业务场景远比这要复杂：分段式数据存储、主从同步 读写分离、高并发同步策略等等</p>
+<p>每一个模块都晦涩难懂</p>
+<p>就好像每一个女神都高不可攀</p>
+<p>屌丝战胜了所有bug，唯独战胜不了她的心</p>
+<p>受伤了只能在深夜里独自买醉</p>
+<p>但每当梦到女神打开我做的页面</p>
+<p>被极致流畅的体验惊艳到</p>
+<p>在精神高潮中享受灵魂升华</p>
+<p>那一刻</p>
+<p>我觉得我又行了</p>
+<p>（完）</p>
+<p>代码地址：<a href="https://github.com/airuikun/blog/tree/master/src/graphql%2Bredis" target="_blank" rel="nofollow noopener noreferrer">github</a></p>
+<blockquote>
+<p>作者：第一名的小蝌蚪，公众号：前端屌丝</p>
+</blockquote></div>
+    <script>
+        const Images = document.querySelectorAll('img')
+        for(let i=0; i<=Images.length; i++){
+            let img = Images[i]
+            if(!img) break
+            img.src = img.getAttribute('data-src')
+        }
+    </script>

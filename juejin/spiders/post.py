@@ -22,7 +22,8 @@ class Post(scrapy.Spider):
         'https://juejin.im/post/6893675091712802830',
         'https://juejin.im/post/6893435960705417224',
         'https://juejin.im/post/6893110732423397383',
-        'https://juejin.im/post/6892786121189621774'
+        'https://juejin.im/post/6892786121189621774',
+
     ]
 
     # def start_requests(self):
